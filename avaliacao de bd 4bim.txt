@@ -1,0 +1,15 @@
+UPDATE tb_empregado
+SET sigla = "102r"
+WHERE matricula = 13;
+
+INSERT INTO tb_empregado(matricula, nome_emp, cargo, salario, sigla)
+VALUES(21, "Bianca de Souza", "secretaria", 2150, "104s"),
+(22, "Mariana Pereira", "Assistente de Eng",3100,"105e"),
+(23, "Paulo da Silva", "Contador", 1900, "103a"),
+(24, "Jessica de Almeida", "Administradora", 2400, "103a"),
+(25, "Bernado Campos", "Engenheiro", 4700, "105a"),
+(26, "Leonardo dos Santos", "Administrador", 2400, "103a"),
+(27, "Marlon Cardoso", "Assistente de RH", 2100, "102r"),
+(28, "Patrick Marques", "Secretario", 3000, "104s"),
+(29, "Milena da Silva", "Contador", 3200, "103a" ),
+(30, "Adriano Cerqueira", "Administrador", 3400, "103a");
