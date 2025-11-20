@@ -1,0 +1,149 @@
+CREATE DATABASE db_Empresa2;
+USE db_Empresa2;
+
+create table tb_Departamento(
+sigla varchar(4) not null primary key,
+nome_Dep varchar(150) not null,
+valor_orcamento double not null
+);
+
+
+insert into tb_Departamento (sigla, nome_Dep, valor_orcamento) values
+('102R', 'Recursos Humanos', 30000),
+('103A', 'Administração', 54000),
+('104S', 'Secretariado', 26000),
+('105E', 'Engenharia', 82000),
+('101D', 'Diretoria', 30000);
+
+create table tb_Empregado (
+matricula smallint primary key auto_increment,
+nome_emp varchar(150) not null,
+cargo varchar(50) not null,
+salario double not null,
+sigla varchar(4) not null,
+foreign key (sigla) references tb_Departamento (sigla) 
+);
+
+insert into tb_Empregado (nome_emp, cargo, salario, sigla) values
+('Carlos Lacerda', 'Administrador', 2500,'103A'),
+('João Mendes', 'Engenheiro', 5400,'105E'),
+('Pamela Garcia', 'Assistente de RH', 2200,'102R'),
+('Joana Pires', 'Contador', 3100,'103A'),
+('Henrique Oliveira', 'Administrador', 2500,'103A'),
+('Mariana da Silva', 'Secretário', 2300,'104S'),
+('Gabriela Costa', 'Engenheiro', 5900,'105E'),
+('Joana Santos', 'Diretor Executivo', 6200,'101D'),
+('Sonia Pereira', 'Assistente de Eng ', 3000,'105E'),
+('Camile da Silva', 'Contador', 3400,'103A'),
+('Antonio Campos', 'Encarregado', 4500,'102R'),
+('Emerson Silva', 'Administrador', 2600,'103A'),
+('Gabriel Siqueira', 'Assistente RH', 2200,'104S'),
+('Marcio da Silva', 'Encarregado', 4500,'105E'),
+('Valeria dos Santos', 'Engenheiro', 5200,'105E'),
+('Pietro Camargo', 'Secretário', 2300,'104S'),
+('Jamile de Souza', 'Assistente de RH', 2100,'102R'),
+('Beatriz dos Santos', 'Encarregado', 4500,'103A'),
+('Fernando Costa', 'Diretor Geral', 6500,'101D'),
+('Alice Maria', 'Administrador', 2800,'103A');
+
+UPDATE tb_empregado
+SET sigla = "102R"
+WHERE matricula = 13;
+
+select *from tb_Empregado;
+
+SELECT sigla FROM tb_empregado;
+
+INSERT INTO tb_Empregado(nome_emp, cargo, salario, sigla)
+VALUES("Bianca de Souza", "secretaria", 2150, '104S'),
+("Mariana Pereira", "Assistente de Eng",3100,'105E'),
+("Paulo da Silva", "Contador", 1900, '103A'),
+("Jessica de Almeida", "Administradora", 2400, '103A'),
+("Bernado Campos", "Engenheiro", 4700, '105E'),
+("Leonardo dos Santos", "Administrador", 2400, '103A'),
+("Marlon Cardoso", "Assistente de RH", 2100, '102R'),
+("Patrick Marques", "Secretario", 3000, '104S'),
+("Milena da Silva", "Contador", 3200, '103A' ),
+("Adriano Cerqueira", "Administrador", 3400, '103A');
+
+SELECT SUM(salario) AS total_salarios
+FROM tb_empregado;
+
+/*4*/
+select sum(salario) as total_salario
+from tb_empregado
+where cargo = "Administrador";
+
+/*5*/
+select sum(salario) as total_salario
+from tb_empregado
+where salario > 3500;
+
+/*6*/
+select sum(salario) as total_salario
+from tb_empregado
+where cargo = "Secretario";
+
+/*7*/
+SELECT COUNT(sigla) AS total_empregados
+FROM tb_empregado
+WHERE sigla = '103A';
+
+/*8*/
+SELECT COUNT(sigla) AS total_empregados
+FROM tb_empregado
+WHERE sigla = "104S";
+
+/*9*/
+SELECT AVG(salario) AS salario_medio
+FROM tb_empregado
+where sigla = "103A";
+
+/*10*/
+SELECT AVG(salario) AS salario_medio
+FROM tb_empregado;
+
+/*11*/
+SELECT MAX(valor_orcamento) AS maior
+FROM tb_Departamento;
+
+/*12*/
+select sum(valor_orcamento) as total
+from tb_Departamento;
+
+/*13*/
+select avg(valor_orcamento) as media
+from tb_Departamento;
+
+/*14*/
+DELETE FROM tb_empregado
+WHERE matricula = 11;
+
+select *from tb_empregado;
+
+/*15*/
+delete from tb_empregado
+where cargo = "Administracao" and salario = 2500;
+
+/*16*/
+select count(*) from tb_empregado;
+
+/*17*/
+insert into tb_empregado(nome_emp, cargo, salario, sigla ) values ("Nivea Maria" , "Contador", 2600, '103A'),
+("Diego Costa", 'Assistente de Eng', 3500, '105E'),
+('Ingrid Souza', 'Adiministracao', 1800, '103A' ),
+('Otavio Pelegrino', 'Administracao', 2100, '103A'),
+('Reanto Silva', 'Assistente de RH', 2300, '103A'),
+('Valeria Martins', 'administracao', 2100, '103A');
+
+/*18*/
+select count(matricula) from tb_empregado;
+
+/*19*/
+select sum(salario) as total
+from tb_empregado
+where sigla = '105E';
+
+/*20*/
+select(nome_emp) from tb_empregado
+where sigla in ('102R', '104S','101D');
